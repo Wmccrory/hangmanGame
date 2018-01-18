@@ -23,7 +23,7 @@
 	}
 
 	header {
-		background: url(../images/headerbackground.png);
+		background: url(../images/headerBackground.png);
 		background-position: center;
 		background-repeat: no-repeat;
 		background-color: black;
@@ -59,6 +59,7 @@
 /* - Footer Elements - */
 
 	footer {
+		clear: both;
 		background-color: #000;
 		padding: .5em;
 	}
@@ -129,7 +130,8 @@
 	}
 
 	.gameBody p {
-		margin-bottom: 50%;
+		margin-top: 5%;
+		margin-bottom: 5%;
 	}
 
 /* - Media Queries */
@@ -143,8 +145,16 @@
 	}
 
 		@media only screen and (max-width:814px) {
+		
 		#dreddBio {
-			display: none;
+			width: 500px;
+		}
+
+		#dreddGamePic {
+			width: 300px;
+			box-shadow: 150px 125px 1000px -76px #00FF66;
+			margin-right: 5em;
+			margin-bottom: 5em;
 		}
 
 		h1 {
@@ -155,6 +165,11 @@
 	@media only screen and (max-width:630px) {
 		#dreddBio {
 			display: none;
+		}
+
+		#dreddGamePic {
+			display: none;
+
 		}
 
 		h1 {
