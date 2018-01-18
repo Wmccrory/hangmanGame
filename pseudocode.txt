@@ -1,0 +1,41 @@
+Dredd's Game pseudo-code |||| | | |  |  |   |
+
+User initializes game:
+
+1. Word is randomly chosen from wordbank.
+
+2. Word from wordbank is broken up into it's individual letters and placed into a new array of the gameWord.
+
+3. Letters are 'hidden' behind '*' and displayed on the gameboard.
+
+4. User enters letterguess.
+
+	4a. Game determines if letter has been used before. If letter has been used previously, process returns to step 4.
+
+5. Game determines if letterguess matches any letters in the gameWord array.
+
+	5a. If letter matches, letter is revealed on the gameBoard.
+
+	5b. If letter does not match, life is taken away and displayed as an added bodypart on the ASCII display.
+
+6. Game determines if any letters remain unrevealed on the gameboard.
+
+	6a. If letters remain unrevealed, process returns to step 4.
+
+	6b. If all letters revealed, win is tallied and ASCII display returns victory message. Game must be reset to continue.
+
+7. Game determines if any life is remaining.
+
+	6a. If life is remaining, process returns to step 4.
+
+	6b. If no life is remaining, loss is tallied and ASCII display returns loss message. Game must be reset to continue.
+
+8. Reset button resets all conditions to original state except win and loss tallies.
+
+Bonus:
+
+a) Letter bank displays at bottom of gameBoard. As letters are chosen, letter bank greys out chosen letters.
+
+b) Special characters allowed in wordbank but are not hidden and not taken into account for win/loss conditions.
+
+c) Users can enter their own words for pseudo-multiplayer mode.

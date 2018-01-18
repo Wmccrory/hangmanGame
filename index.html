@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>The Judge's Game</title>
+	<title>Dredd's Game</title>
 	<link rel="icon" href="assets/images/favicon.png">
 	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -12,7 +12,7 @@
 
 <body>
 	<header>
-		<h1>Hangman's game</h1>
+		<h1>Dredd's game</h1>
 	</header>
 
 	<section id="contentCont">
@@ -29,8 +29,8 @@
 			<ul>
 				<li>- Possession of an unlicensed computer</li>
 				<li>- Unauthorized use of the intra-web</li>
-				<li>- Illegal possession of propaganda promoting democracy</li>
-				<li>- Illegal transmission of obscene photographs</li>
+				<li>- Possession of materials promoting an illegal ideology (Democracy) [ 36 counts ]</li>
+				<li>- Illegal transmission of obscene photographs [ 189 counts ]</li>
 			</ul>
 			<br>
 			<p>You have been found guilty. The sentence? Death. However..</p>
@@ -39,7 +39,7 @@
 		<br><hr><br>
 
 		<section class="gameBridge">
-			<h3>..You can save yourself from the judge's noose.</h3>
+			<h3>..You can save yourself from the judge's rope.</h3>
 		</section>
 
 		<br><hr><br>
@@ -55,9 +55,34 @@
 		<section class="gameBridge">
 			<h3>Will you choose the gallows or the wastes?</h3>
 		</section>
-		<br><hr><br>
+		<br><hr>
 
-		<div style="margin-bottom: 15%"> </div>
+		<section class="gameContent">
+			<section id="hangImage">
+				<div id="lifeDisplay">
+					<h2><u>******</u></h2>
+				    <h2>|***|*</h2>
+				    <h2>|**0*</h2>
+				    <h2>|**/|\</h2>
+				    <h2>|**/*\</h2>
+				    <h2>|*****</h2>
+				    <h2>|*****</h2>
+				</div>
+				<br>
+				<p>Wins: <div id="wins"></div></p>
+				<p>Losses: <div id="losses"></div></p>
+			</section>
+
+			<section id="hangGame">
+				<button type="button" class="hangButton" id="hangStart" onclick="myFunction()">Start Game</button>
+				<h2>DreddGame <br>ver1.0.6.7</h2>
+				<button type="button" class="hangButton" id="hangReset">Reset Game</button>
+				<hr><br><br>
+
+				<div id="hiddenWord"><div>
+
+			</section>
+		</section>
 
 	</section>
 
@@ -65,6 +90,7 @@
 		<hr>
 		<h6>© Copyright 2018 Will McCrory</h6>
 		<hr>
+		<script src="assets/javascript/game.js"></script>
 	</footer>
 </body>
 

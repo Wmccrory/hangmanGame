@@ -56,6 +56,28 @@
 		text-align: right;
 	}
 
+	.gameContent {
+		clear: both;
+		border: solid 10px #00FF66;
+		box-shadow: 0px -2px 10px #00FF66;
+		padding: 5em;
+	}
+
+	#hangImage {
+		float: left;
+		border: solid 10px #00FF66;
+		box-shadow: 0px -2px 10px #00FF66;
+		padding: .5em 1em .5em 1em;
+	}
+
+	#hangGame {
+		margin-left: 30%;
+		height: 500px;
+		border: solid 10px #00FF66;
+		box-shadow: 0px -2px 10px #00FF66;
+		padding: 2em;	
+	}
+
 /* - Footer Elements - */
 
 	footer {
@@ -132,6 +154,28 @@
 	.gameBody p {
 		margin-top: 5%;
 		margin-bottom: 5%;
+	}
+
+/* - Hangman game style - */
+	#hangGame h2 {
+		float: right;
+		text-align: right;
+	}
+
+	#hangGame hr {
+		clear: right;
+		margin-bottom: 3em;
+	}
+
+	.hangButton {
+		border: solid 5px #00FF66;
+		box-shadow: 0px -2px 10px #00FF66;
+		background: #282828;
+		padding: .5em;
+		font-family: "bitwiseregular";
+		font-size: 1.5em;
+		color: #00FF66;
+		margin-bottom: .25em;
 	}
 
 /* - Media Queries */
