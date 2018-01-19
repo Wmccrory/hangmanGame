@@ -132,6 +132,13 @@
 		color: #00FF66;
 	}
 
+	h4 {
+		text-align: center;
+		font-family: "bitwiseregular";
+		font-size: 4em;
+		color: #00FF66;
+	}
+
 	p {
 		font-family: "bitwiseregular";
 		font-size: 1.75em;
