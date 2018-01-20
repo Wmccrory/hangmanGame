@@ -104,6 +104,11 @@
 		margin-bottom: 10em;
 	}
 
+	.mediaIcon {
+		height: 30px;
+		width: 30px;
+	}
+
 	hr {
 		border: solid 5px #00FF66;
 		box-shadow: 0px -2px 10px #00FF66;
@@ -142,7 +147,15 @@
 	p {
 		font-family: "bitwiseregular";
 		font-size: 1.75em;
-		color: #00FF66;		
+		color: #00FF66;
+	}
+
+	#alphabetDisplay {
+		font-family: "bitwiseregular";
+		font-size: 3em;
+		color: #00FF66;	
+		text-align: center;
+		margin: 1em auto;	
 	}
 
 	ul {
@@ -153,9 +166,9 @@
 
 	h6 {
 		font-family: "boycott";
-		font-size: .5em;
+		font-size: .75em;
+		padding-top: .5em;
 		color: white;
-		text-align: center;
 	}
 
 	.gameBody p {
