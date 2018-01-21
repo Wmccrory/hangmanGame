@@ -5,13 +5,18 @@ console.log("Game is loaded");
 
 //Wordbank
 var wordBank = [
-	"judge", "slab", "resyk", "zoomway", "megacity", "creep", "perp", "citizen", "wastelander", "wasteland", "executioner",
-	"jury", "droid", "justice", "law", "mutant", "superjudge", "drokk", "innocent", "guilty", "criminal", "misdemeanor",
+	"judge", "slab", "resyk", "zoomway", "megacity", "creep", "perp", "citizen", "radiation", "wasteland", "criminal",
+	"jury", "droid", "justice", "law", "mutant", "superjudge", "drokk", "innocent", "guilty", "criminal", "crime",
 	"sked", "helmet", "narcotics", "america", "irradiated", "lawbringer", "rookie", "sentence", "felony", "disperse"
-];
+				];
 
 //Alphabet bank
-var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var alphabet = [
+				"a", "b", "c", "d", "e", "f", "g", "h", 
+				"i", "j", "k", "l", "m", "n", 
+				"o", "p", "q", "r", "s", "t", 
+				"u", "v", "w", "x", "y", "z"
+				];
 var alphabetSplice
 
 //Hangman image
@@ -111,11 +116,12 @@ document.getElementById("hangStart").onclick = function myGame() {
     			//Checking if loss condition met and ending game if so
     			if (remainingLives < 1) {
     				document.getElementById("lifeDisplay").innerHTML = hangAscii[6];
-    				(losses =+ 1);
+    				(losses++);
     				let gameOver = true;
     				console.log(gameOver);
     				document.getElementById("losses").innerHTML ="<p>" + losses + "</p>";
     				document.getElementById("gameConsole").innerHTML ="<p>" + "Justice time." + "</p>";
+    				return;
     			}
     		}
 
@@ -130,10 +136,11 @@ document.getElementById("hangStart").onclick = function myGame() {
 		    		document.getElementById("hiddenWord").innerHTML = hiddenWord.join(" ");
 		    		//Checking if win condition met and ending game if so//
 				if (guessedLet.length === secretWord.length) {
-		    			(wins =+ 1);
+		    			(wins++);
 		    			let gameOver = true;
 		    			document.getElementById("wins").innerHTML ="<p>" + wins + "</p>";
 		    			document.getElementById("gameConsole").innerHTML ="<p>" + "Prepare yourself for the Cursed Earth." + "</p>";
+		    			return;
 		    		}
     			}
     		}
@@ -152,7 +159,7 @@ document.getElementById("hangReset").onclick = function myReset() {
 	remainingLives = lives;
 	imgInc = 0;
 	document.getElementById("lifeDisplay").innerHTML = hangAscii[imgInc];
-	document.getElementById("hiddenWord").innerHTML = hiddenWord.join(" ");
+	document.getElementById("hiddenWord").innerHTML = "Decide your fate";
 	document.getElementById("alphabetDisplay").innerHTML = alphabet.join(" ");
 	document.getElementById("gameConsole").innerHTML =" ";
 }
