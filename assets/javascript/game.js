@@ -4,9 +4,11 @@ console.log("Game is loaded");
 //global variables//
 
 //Wordbank
-var wordBank = ["judge", 
-				"jury"
-				];
+var wordBank = [
+	"judge", 
+	"jury",
+	"pool"
+];
 
 //Alphabet bank
 var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
@@ -44,6 +46,7 @@ var hangAscii = ["<h2><u>******</u></h2><h2>|***|*</h2><h2>|*****</h2><h2>|*****
 	var hiddenWord = [];
 //Guessed letters
 	// var guessedLet = [];
+	// var guessedLetSplice;
 
 /////////////////////////////////////////////////////////////////////////////////
 //Entire game written inside myGame, executes once "Start Game" button pressed//
@@ -51,6 +54,7 @@ var hangAscii = ["<h2><u>******</u></h2><h2>|***|*</h2><h2>|*****</h2><h2>|*****
 document.getElementById("hangStart").onclick = function myGame() {
 	//Console message letting you know game has started running
 	console.log("Game is ready");
+
 	//Starting conditions set
 	document.getElementById("lifeDisplay").innerHTML = hangAscii[0];
 	let remainingLives = lives;
@@ -58,14 +62,16 @@ document.getElementById("hangStart").onclick = function myGame() {
 	let gameStart = true;
 	let gameReset = false;
 	console.log("game started = " + gameStart + " game reset = " + gameReset);
+
 	//Word chosen from wordBank
 	secret = Math.floor(Math.random() * (wordBank.length));
-	//Word converted into array of secret characters for display
-	for (var i = 0; i < wordBank[secret].length; i++) {
-		hiddenWord.push("<u>*</u>");
-	}
 	var secretWord = wordBank[secret];
 	var guessedLet = [];
+
+	//Word converted into array of secret characters for display
+	for (var i = 0; i < secretWord.length; i++) {
+		hiddenWord.push("<u>*</u>");
+	}
 	//Secret word and alphabet displayed on game board
 	document.getElementById("hiddenWord").innerHTML = hiddenWord.join(" ");
 	document.getElementById("alphabetDisplay").innerHTML = alphabet.join(" ");
@@ -76,6 +82,7 @@ document.getElementById("hangStart").onclick = function myGame() {
 
 	document.onkeyup = function(event) {
     	var userGuess = event.key.toLowerCase();
+
     	 ////////////////////////////////
     	//Update alphabet grid display//
     	if (event.keyCode >= 65 && event.keyCode <=90) {
@@ -86,19 +93,17 @@ document.getElementById("hangStart").onclick = function myGame() {
     		} else {
     			alphabet.splice(alphabetSplice, 1, "<s>" + userGuess + "</s>");
     			document.getElementById("alphabetDisplay").innerHTML = alphabet.join(" ");
-    		} //End of alphabet board splice//
+    		}
 
-    	///////////////////////////////////////////////////
-    	//Searching secret word for any matching letters//
+    	///////////////////////////////////////////////////////////////////////////////////////////////
+    	//Searching secret word for matching letters and updating guessedLet array / hiddenWord html//
     	for (var i = 0; i < secretWord.length; i++) {
     		if (secretWord[i] === userGuess) guessedLet.push(i);
-    		}
+    		if (secretWord[i] === userGuess) hiddenWord.splice(i, 1, userGuess);
+    		document.getElementById("hiddenWord").innerHTML = hiddenWord.join(" ");
+    	}
     	console.log(guessedLet);
     	console.log(secretWord);
-
-    	//////////////////////
-    	//Update hiddenWord display//
-
 
     	 //////////////////////////////////
     	//User entered invalid character//	
@@ -108,14 +113,16 @@ document.getElementById("hangStart").onclick = function myGame() {
   	}
 }
 
+// 		// copyright start gregg-code
+//     	let indexesFound = matchedIndexes(secretWord, userGuess)
+//     	$hiddenLetterDOMNodes = $('#hiddenWord').getElementById('u')
+//     	// replace innerHTML of DOM nodes at found indexes
 
+// function matchedIndexes(secretWord = '', userGuess = '') {
 
-// document.onkeyup = function(event) {
-// 	if (gameOver = true) {
-// 		document.getElementById("gameConsole").innerHTML = "Game is over creep";
-// 	} else {
-// 		if (event.keyCode >= 65 && event.keyCode <= 90) {
-// 			userGuess(event.key.toLowerCase());
-// 		}
-// 	}
-// 	}
+// 	return secretWord.split().map(function(userGuess, i) {
+//     	if (letter === userGuess) {
+//     		return i
+//     	}
+//     })
+// }
