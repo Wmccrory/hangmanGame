@@ -23,6 +23,7 @@ var hangAscii = ["<h2><u>******</u></h2><h2>|***|*</h2><h2>|*****</h2><h2>|*****
 				 "<h2><u>******</u></h2><h2>|***|*</h2><h2>|*****</h2><h2>|**/|\\</h2><h2>|**/*\\</h2><h2>|*****</h2><h2>|*****</h2>",
 				 "<h2><u>******</u></h2><h2>|***|*</h2><h2>|**0*</h2><h2>|**/|\\</h2><h2>|**/*\\</h2><h2>|*****</h2><h2>|*****</h2",
 				];
+var imgInc = 0
 
 //Starting lives
 	const lives = 6;
@@ -47,6 +48,7 @@ var hangAscii = ["<h2><u>******</u></h2><h2>|***|*</h2><h2>|*****</h2><h2>|*****
 //Guessed letters
 	// var guessedLet = [];
 	// var guessedLetSplice;
+	var userGuessChecker;
 
 /////////////////////////////////////////////////////////////////////////////////
 //Entire game written inside myGame, executes once "Start Game" button pressed//
@@ -56,7 +58,7 @@ document.getElementById("hangStart").onclick = function myGame() {
 	console.log("Game is ready");
 
 	//Starting conditions set
-	document.getElementById("lifeDisplay").innerHTML = hangAscii[0];
+	document.getElementById("lifeDisplay").innerHTML = hangAscii[imgInc];
 	let remainingLives = lives;
 	console.log("remaining lives = " + remainingLives);
 	let gameStart = true;
@@ -88,26 +90,46 @@ document.getElementById("hangStart").onclick = function myGame() {
     	if (event.keyCode >= 65 && event.keyCode <=90) {
     		//splicing in strikethrough letter in alphabet board//
     		let alphabetSplice = (alphabet.indexOf(userGuess));
+    		let userGuessChecker = (secretWord.indexOf(userGuess));
+    		//If user guesses letter already chosen
     		if (alphabetSplice === -1) {
     			console.log("Already entered letter");
-    		} else {
-    			alphabet.splice(alphabetSplice, 1, "<s>" + userGuess + "</s>");
-    			document.getElementById("alphabetDisplay").innerHTML = alphabet.join(" ");
+    		//If user guesses wrong letter
+    		} else if (userGuessChecker === -1) {
+    			(k = --remainingLives);
+    			(imgInc++);
+    			document.getElementById("lifeDisplay").innerHTML = hangAscii[imgInc];
+    			console.log(remainingLives);
+    			//Checking if loss condition met and ending game if so
+    			if (remainingLives < 1) {
+    				(losses =+ 1);
+    				let gameOver = true;
+    				console.log(gameOver);
+    				document.getElementById("losses").innerHTML ="<p>" + losses + "</p>";
+    				document.getElementById("gameConsole").innerHTML ="<p>" + "Justice time." + "</p>";
+    			}
     		}
 
-    	///////////////////////////////////////////////////////////////////////////////////////////////
-    	//Searching secret word for matching letters and updating guessedLet array / hiddenWord html//
-    	for (var i = 0; i < secretWord.length; i++) {
-    		if (secretWord[i] === userGuess) guessedLet.push(i);
-    		if (secretWord[i] === userGuess) hiddenWord.splice(i, 1, userGuess);
-    		document.getElementById("hiddenWord").innerHTML = hiddenWord.join(" ");
-    	}
-    	console.log(guessedLet);
-    	console.log(secretWord);
-
-    	 //////////////////////////////////
-    	//User entered invalid character//	
+    		else {
+    			alphabet.splice(alphabetSplice, 1, "<s>" + userGuess + "</s>");
+    			document.getElementById("alphabetDisplay").innerHTML = alphabet.join(" ");
+		    	///////////////////////////////////////////////////////////////////////////////////////////////
+		    	//Searching secret word for matching letters and updating guessedLet array / hiddenWord html//
+		    	for (var i = 0; i < secretWord.length; i++) {
+		    		if (secretWord[i] === userGuess) guessedLet.push(i);
+		    		if (secretWord[i] === userGuess) hiddenWord.splice(i, 1, userGuess);
+		    		document.getElementById("hiddenWord").innerHTML = hiddenWord.join(" ");
+		    		//Checking if win condition met and ending game if so//
+		    		if (guessedLet.length === secretWord.length) {
+		    			(wins =+ 1);
+		    			let gameOver = true;
+		    			document.getElementById("wins").innerHTML ="<p>" + wins + "</p>";
+		    			document.getElementById("gameConsole").innerHTML ="<p>" + "Prepare yourself for the Cursed Earth." + "</p>";
+		    		}
+    			}
+    		}
     	} else {
+    		//User entered invalid character//	
     		console.log("Not a valid input");
     	}
   	}
