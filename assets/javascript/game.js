@@ -5,9 +5,9 @@ console.log("Game is loaded");
 
 //Wordbank
 var wordBank = [
-	"judge", 
-	"jury",
-	"pool"
+	"judge", "slab", "resyk", "zoomway", "megacity", "creep", "perp", "citizen", "wastelander", "wasteland", "executioner",
+	"jury", "droid", "justice", "law", "mutant", "superjudge", "drokk", "innocent", "guilty", "criminal", "misdemeanor",
+	"sked", "helmet", "narcotics", "america", "irradiated", "lawbringer", "rookie", "sentence", "felony", "disperse"
 ];
 
 //Alphabet bank
@@ -56,7 +56,9 @@ var imgInc = 0
 document.getElementById("hangStart").onclick = function myGame() {
 	//Console message letting you know game has started running
 	console.log("Game is ready");
-
+	if (hiddenWord.length > 0) {
+		console.log("Game already started");
+	} else {
 	//Starting conditions set
 	document.getElementById("lifeDisplay").innerHTML = hangAscii[imgInc];
 	let remainingLives = lives;
@@ -91,20 +93,24 @@ document.getElementById("hangStart").onclick = function myGame() {
     		//splicing in strikethrough letter in alphabet board//
     		let alphabetSplice = (alphabet.indexOf(userGuess));
     		let userGuessChecker = (secretWord.indexOf(userGuess));
-    		alphabet.splice(alphabetSplice, 1, "<s>" + userGuess + "</s>");
-    		document.getElementById("alphabetDisplay").innerHTML = alphabet.join(" ");
     		//If user guesses letter already chosen
     		if (alphabetSplice === -1) {
     			console.log("Already entered letter");
     		//If user guesses wrong letter
-    		} else if (userGuessChecker === -1) {
-    			
-    			(k = --remainingLives);
+    		} else if (guessedLet.length === secretWord.length || remainingLives === 0) {
+    			console.log("Game already over");
+    		}
+    		else if (userGuessChecker === -1) {   			
+    			alphabet.splice(alphabetSplice, 1, "<s>" + userGuess + "</s>");
+    			document.getElementById("alphabetDisplay").innerHTML = alphabet.join(" ");
+    			(--remainingLives);
     			(imgInc++);
     			document.getElementById("lifeDisplay").innerHTML = hangAscii[imgInc];
     			console.log(remainingLives);
+    			console.log(gameOver);
     			//Checking if loss condition met and ending game if so
     			if (remainingLives < 1) {
+    				document.getElementById("lifeDisplay").innerHTML = hangAscii[6];
     				(losses =+ 1);
     				let gameOver = true;
     				console.log(gameOver);
@@ -116,12 +122,14 @@ document.getElementById("hangStart").onclick = function myGame() {
     		else {
 		    	///////////////////////////////////////////////////////////////////////////////////////////////
 		    	//Searching secret word for matching letters and updating guessedLet array / hiddenWord html//
+		    	alphabet.splice(alphabetSplice, 1, "<s>" + userGuess + "</s>");
+    			document.getElementById("alphabetDisplay").innerHTML = alphabet.join(" ");
 		    	for (var i = 0; i < secretWord.length; i++) {
 		    		if (secretWord[i] === userGuess) guessedLet.push(i);
 		    		if (secretWord[i] === userGuess) hiddenWord.splice(i, 1, userGuess);
 		    		document.getElementById("hiddenWord").innerHTML = hiddenWord.join(" ");
 		    		//Checking if win condition met and ending game if so//
-		    		if (guessedLet.length === secretWord.length) {
+				if (guessedLet.length === secretWord.length) {
 		    			(wins =+ 1);
 		    			let gameOver = true;
 		    			document.getElementById("wins").innerHTML ="<p>" + wins + "</p>";
@@ -134,18 +142,17 @@ document.getElementById("hangStart").onclick = function myGame() {
     		console.log("Not a valid input");
     	}
   	}
+  }
 }
 
-// 		// copyright start gregg-code
-//     	let indexesFound = matchedIndexes(secretWord, userGuess)
-//     	$hiddenLetterDOMNodes = $('#hiddenWord').getElementById('u')
-//     	// replace innerHTML of DOM nodes at found indexes
-
-// function matchedIndexes(secretWord = '', userGuess = '') {
-
-// 	return secretWord.split().map(function(userGuess, i) {
-//     	if (letter === userGuess) {
-//     		return i
-//     	}
-//     })
-// }
+document.getElementById("hangReset").onclick = function myReset() {
+	hiddenWord = [];
+	guessedLet = [];
+	alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+	remainingLives = lives;
+	imgInc = 0;
+	document.getElementById("lifeDisplay").innerHTML = hangAscii[imgInc];
+	document.getElementById("hiddenWord").innerHTML = hiddenWord.join(" ");
+	document.getElementById("alphabetDisplay").innerHTML = alphabet.join(" ");
+	document.getElementById("gameConsole").innerHTML =" ";
+}
