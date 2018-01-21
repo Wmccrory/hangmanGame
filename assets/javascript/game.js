@@ -91,11 +91,14 @@ document.getElementById("hangStart").onclick = function myGame() {
     		//splicing in strikethrough letter in alphabet board//
     		let alphabetSplice = (alphabet.indexOf(userGuess));
     		let userGuessChecker = (secretWord.indexOf(userGuess));
+    		alphabet.splice(alphabetSplice, 1, "<s>" + userGuess + "</s>");
+    		document.getElementById("alphabetDisplay").innerHTML = alphabet.join(" ");
     		//If user guesses letter already chosen
     		if (alphabetSplice === -1) {
     			console.log("Already entered letter");
     		//If user guesses wrong letter
     		} else if (userGuessChecker === -1) {
+    			
     			(k = --remainingLives);
     			(imgInc++);
     			document.getElementById("lifeDisplay").innerHTML = hangAscii[imgInc];
@@ -111,8 +114,6 @@ document.getElementById("hangStart").onclick = function myGame() {
     		}
 
     		else {
-    			alphabet.splice(alphabetSplice, 1, "<s>" + userGuess + "</s>");
-    			document.getElementById("alphabetDisplay").innerHTML = alphabet.join(" ");
 		    	///////////////////////////////////////////////////////////////////////////////////////////////
 		    	//Searching secret word for matching letters and updating guessedLet array / hiddenWord html//
 		    	for (var i = 0; i < secretWord.length; i++) {
