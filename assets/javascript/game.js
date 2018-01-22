@@ -7,7 +7,8 @@ console.log("Game is loaded");
 var wordBank = [
 	"judge", "slab", "resyk", "zoomway", "megacity", "creep", "perp", "citizen", "radiation", "wasteland", "criminal",
 	"jury", "droid", "justice", "law", "mutant", "superjudge", "drokk", "innocent", "guilty", "criminal", "crime",
-	"sked", "helmet", "narcotics", "america", "irradiated", "lawbringer", "rookie", "sentence", "felony", "disperse"
+	"sked", "helmet", "narcotics", "america", "irradiated", "lawgiver", "rookie", "sentence", "felony", "disperse",
+	"judgement", "lawmaster", "meanmachine", "widowmaker", "ammunition", "chopper", "motorcyle", "block", "order"
 				];
 
 //Alphabet bank
@@ -120,7 +121,7 @@ document.getElementById("hangStart").onclick = function myGame() {
     				let gameOver = true;
     				console.log(gameOver);
     				document.getElementById("losses").innerHTML ="<p>" + losses + "</p>";
-    				document.getElementById("gameConsole").innerHTML ="<p>" + "Justice time." + "</p>";
+    				document.getElementById("gameConsole").innerHTML ="<p>" + "Judgement time." + "</p>";
     				return;
     			}
     		}
